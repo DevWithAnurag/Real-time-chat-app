@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/res-style.css">
+    <title>Let's talk- A real time chat app</title>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="userContainer">
+
+
+
+
+            <div class="userinfo">
+                <div id="circle">
+                    <h1></h1>
+                </div>
+                <div id="userName">
+                    <h1></h1>
+                </div>
+            </div>
+            <hr>
+
+            <div id="ConnectedUsers">
+                <div class="top">
+                    <h2>Conected Users</h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chatContainer">
+
+            <div class="hamburger">
+                <img src="./assets/right-arrow.png" alt="" style="width: 19px;">
+            </div>
+
+            <div class="top black">
+                <h1>Let's Talk chat app</h1>
+            </div>
+
+            <div id="AllChats">
+            </div>
+
+
+            <div class="bottom">
+                <form action="#" id="send-container">
+                    <input type="text" placeholder="Enter Your Message" id="input">
+                    <button type="submit" id="send-btn">
+                        <img src="./assets/send 1.png" alt="Send Message">
+                    </button>
+                </form>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/client.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+
+</html>
