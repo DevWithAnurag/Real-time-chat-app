@@ -8,7 +8,7 @@ const server = createServer(app);
 const io = new Server(server);
 const users = {};
 
-app.use(express.static('public'))
+app.use(express.static('public'));
 
 //middle ware
 app.get('/', (req, res) => {
@@ -34,8 +34,6 @@ io.on('connection', (socket) => {
     io.emit('leave');
     delete users[socket.id];
   });
-
-
 
 });
 

@@ -175,8 +175,9 @@ img {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     width: auto;
-    height: 55px;
+    height: auto;
     margin: 13px;
+    max-width: 268px;
 }
 
 .dark-username {
@@ -185,9 +186,8 @@ img {
 
 .Message::after {
     content: var(--after-content);
-    position: absolute;
-    top: 55px;
-    right: 2px;
+    font-weight: 700;
+    margin-left: 9px;
     font-size: 13px;
 }
 
