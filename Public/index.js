@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
   res.sendFile(join(__dirname, 'index.html'));
 });
 
+
 //io connection....
 io.on('connection', (socket) => {
   const userName = socket.handshake.query.userName;
@@ -36,8 +37,6 @@ io.on('connection', (socket) => {
   });
 
 });
-
-
 
 server.listen(3000, () => {
   console.log('server running at http://localhost:3000');

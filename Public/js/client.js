@@ -11,10 +11,8 @@ var pos = 'right';
 
 
 //functions...
-
 function getTime() {
   const messages = document.querySelectorAll('.Message');
-  console.log(messages);
   const date = new Date();
   let hours = date.getHours();
   const minutes = date.getMinutes();
@@ -33,6 +31,7 @@ function getTime() {
 
 };
 
+//when view of user got full by the messages then it's auto showes the newer messasges to the user...
 function scrollToBottom() {
   let chatMessage = document.getElementById('AllChats');
   chatMessage.scrollTop = chatMessage.scrollHeight;
@@ -56,7 +55,7 @@ form.addEventListener('submit', (e) => {
     audio.play();
     let newDiv = document.createElement("div");
     newDiv.classList.add("Message", pos);// Set the id attribute
-    newDiv.innerHTML = username + "<br> " + input.value; // Set the text content
+    newDiv.innerHTML = "<span class='username'>" + username + "</span><br> " + input.value; // Set the text content
     messages.appendChild(newDiv); // Append it to the body
 
     //calling time function so that the updated time of chat can show up to user
@@ -71,33 +70,34 @@ form.addEventListener('submit', (e) => {
   }
 });
 
+
 //socketes...
 socket.emit('new-joined', username,);
 
-
 socket.on('chat message', (msg, username, pos) => {
-
+  //palying audio when user send a message in the chat...
   audio.play();
 
+  //message  div
   let messageDiv = document.createElement("div");
   messageDiv.classList.add("Message", pos);// Set the id attribute
-  messageDiv.innerHTML = username + "<br>" + msg; // Set the text content
+  messageDiv.innerHTML = "<span class='username'>" + username + "</span><br> " + msg; // Set the text content
   messages.appendChild(messageDiv); // Append it to the body, for example  
 
   //calling time function to show the updated time..
   getTime();
   //callling scroll function so that user does can see newer chats on thier screen
-  scrollToBottom()
+  scrollToBottom();
 });
 
 socket.on('user-name', (name) => {
   // Create elements
-  var userProfileContainer = document.createElement('div');
+  let userProfileContainer = document.createElement('div');
   userProfileContainer.classList.add('userProfileContainer');
 
-  var userImage = document.createElement('div');
+  let userImage = document.createElement('div');
   userImage.classList.add('userImage');
-  var userImageText = document.createElement('h1');
+  let userImageText = document.createElement('h1');
   userImageText.textContent = name.charAt(0); // Assuming 'U' as the user's initial
   userImage.appendChild(userImageText);
 
@@ -106,29 +106,24 @@ socket.on('user-name', (name) => {
   let userNameText = document.createElement('h1');
   userNameText.textContent = name; // Assuming 'User 1' as the username
   userName.appendChild(userNameText);
-
   // Append elements
   userProfileContainer.appendChild(userImage);
   userProfileContainer.appendChild(userName);
-
   // Append to div#ConnectedUsers
   let connectedUsersDiv = document.getElementById('ConnectedUsers');
   connectedUsersDiv.appendChild(userProfileContainer);
 });
 
 socket.on('leave', () => {
+  //playing audio when user left the chat..
   leaveAudio.play();
 
   let userName = document.querySelectorAll('.userName');
   let userImage = document.querySelectorAll('.userImage');
-
   // Remove the last element from userName
   userName = removeLastElement(userName);
-
   // Remove the last element from userImage
   userImage = removeLastElement(userImage);
-
-
 
   function removeLastElement(nodeList) {
     const length = nodeList.length;

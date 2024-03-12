@@ -180,9 +180,11 @@ img {
     max-width: 268px;
 }
 
-.dark-username {
-    font-size: 15px;
+.username {
+    font-weight: bold;
+    color: rgb(0, 0, 0);
 }
+
 
 .Message::after {
     content: var(--after-content);
